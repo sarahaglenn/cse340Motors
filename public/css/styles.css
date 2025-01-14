@@ -7,7 +7,7 @@
 :root {
   /* fonts */
   --font-body: Arial, Helvetica, sans-serif;
-  --font-headline: "Roboto", serif;
+  --font-headline: "Roboto", sans-serif;
   
   /* colors */
   --primary-color: #ccc5b9;
@@ -22,12 +22,10 @@
 }
 body {
   font-family: var(--font-body);
+  margin: 0;
 }
-#wrapper {
-  display: block;
-  overflow: hidden;
-  max-width: 98%;
-  margin: auto;
+header, main, footer {
+  margin: 10px 5px;
 }
 h1, h2 {
   font-family: var(--font-headline);
@@ -49,9 +47,6 @@ header a {
 #tools {
   font-size: .9em;
 }
-nav {
-  max-width: 100%;
-}
 nav ul {
   display:flex;
   justify-content: space-between;
@@ -61,8 +56,8 @@ nav ul {
   background-color: var(--secondary-color);
 }
 nav li {
-  display: inline;
-  padding: .4em;
+  display: inline-block;
+  padding: 1em;
   color: white;
   transition: 0.3s;
 }
@@ -81,6 +76,9 @@ section {
   top: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0.781);
+}
+.banner-info h2 {
+  font-size: large;
 }
 .banner p {
   margin: 0;
@@ -119,5 +117,5 @@ section {
   bottom: 0;
   text-align: center;
   color: var(--highlight-color);
-  padding-bottom: 7px;
+  /* padding: 7px; */
 }
