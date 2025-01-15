@@ -4,6 +4,9 @@
 *:after {
   box-sizing: border-box;
 }
+#wrapper {
+  max-width: 100%;
+}
 :root {
   /* fonts */
   --font-body: Arial, Helvetica, sans-serif;
@@ -26,6 +29,10 @@ body {
 }
 #wrapper {
   margin: 0;
+}
+main {
+  display: flex;
+  flex-direction: column;
 }
 header, main, footer {
   margin: 10px 5px;
@@ -76,7 +83,10 @@ section {
   margin-top: 30px;
 }
 .banner {
+  max-width: 100%;
   position: relative;
+  margin-left: 5px;
+  text-align: center;
 }
 .banner-info {
   color: var(--highlight-color);
@@ -95,6 +105,13 @@ section {
 .banner button {
   background-color: #ea845c;
   border: 2px solid var(--dark-grey);
+  padding: 7px;
+}
+.banner img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
 }
 .reviews ul li {
   margin: 10px 0 10px 0;
@@ -128,4 +145,61 @@ section {
 }
 
 /* media queries */
-/* @media (min-width: ) */
+@media (min-width: 500px) {
+  body {
+    background-image: url("../images/site/small_check.jpg");
+    background-size: cover;
+  }
+  #wrapper {
+    background-color: white;
+    max-width: 80%;
+    border: 3px solid var(--highlight-color);
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    margin: 15px auto;
+  }
+  .banner {
+    margin-left: 20px;
+    align-self: center;
+  }
+  .banner-info p {
+    padding: 4px;
+  }
+  .banner-info button {
+    margin: 5px;
+  }
+}
+@media (min-width: 770px) {
+  .review-upgrades {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-self: center;
+  }
+  .reviews, .upgrades {
+    flex: 1;
+  }
+  .upgrades {
+    order: 1;
+  }
+  .reviews {
+    order: 2;
+  }
+}
+@media (min-width: 875px){
+  header, footer {
+    margin: 20px auto;
+    max-width: 80%;
+  }
+  h1 {
+    text-align: center;
+  }
+}
+@media (min-width: 1100px) {
+  #wrapper {
+    max-width: 900px;
+  }
+}
