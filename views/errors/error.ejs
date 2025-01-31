@@ -3,5 +3,7 @@
         <%= title %>
     </h1>
     <% } else { res.redirect('/') } %>
-
-        <%- message %>
+        <img id="error-img" src="/images/site/wrongway.webp" alt="Wrong Way image">
+        <div class="error-message">
+            <%- message %>
+        </div>

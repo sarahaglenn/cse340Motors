@@ -76,13 +76,14 @@ nav ul {
 nav li {
   display: inline-block;
   text-align: center;
-  padding: 1em 0.5em;
+  padding: 3vw 2vw;
   color: white;
   transition: 0.3s;
 }
 nav a {
   color: white;
   text-decoration: none;
+  font-size: 4vw;
 }
 nav li:hover {
   background-color: var(--highlight-color);
@@ -192,12 +193,36 @@ section {
 .namePrice span {
   font-size: var(--font-base);
 }
+/* Vehicle Detail Page */
+#inv-details-display {
+  margin-bottom: 40px;
+}
+#inv-details-display img {
+  max-width: 100%;
+  border-bottom: 5px solid var(--highlight-color);
+}
+.vehicleDetails {
+  padding: 0 20px;
+}
+/* Error Message Page */
+.error-message {
+  max-width: 90%;
+  margin: 10px auto;
+}
+#error-img {
+  max-width: 50%;
+  margin: 0 auto;
+  opacity: .5;
+}
 
 /* media queries */
 @media (min-width: 500px) {
   body {
     background-image: url('../images/site/small_check.jpg');
     background-size: auto;
+  }
+  nav a {
+    font-size: var(--large-font);
   }
   #wrapper {
     background-color: white;
@@ -210,6 +235,13 @@ section {
     -o-border-radius: 7px;
     margin: 15px auto;
   }
+  header,
+  footer {
+    margin: 3vh 5vw;
+  }
+  h1 {
+    margin-left: 5vw;
+  }
   .banner {
     margin-left: 20px;
     align-self: center;
@@ -219,6 +251,21 @@ section {
   }
   .banner-info button {
     margin: 5px;
+  }
+  #inv-details-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+  }
+  #inv-details-display img {
+    padding-top: 20px;
+    max-width: 48%;
+    height: auto;
+  }
+  .vehicleDetails {
+    max-width: 48%;
   }
 }
 @media (min-width: 770px) {
@@ -242,11 +289,11 @@ section {
 @media (min-width: 875px) {
   header,
   footer {
-    margin: 20px auto;
+    /* margin: 3vh 5vw; */
     max-width: 80%;
   }
   h1 {
-    margin-left: 10%;
+    margin-left: 5vw;
   }
 }
 @media (min-width: 1100px) {
