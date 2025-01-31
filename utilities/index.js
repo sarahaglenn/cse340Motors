@@ -71,7 +71,7 @@ Util.buildVehicleDetail = async function(data){
     main += `<p><strong>Price:</strong> <span>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span></p>\n`
     main += `<p><strong>Description:</strong> ${vehicle.inv_description}</p>\n`
     main += `<p><strong>Color:</strong> ${vehicle.inv_color}</p>\n`
-    main += `<p><strong>Miles:</strong> ${vehicle.inv_miles.toLocaleString()}</p>\n</div>\n</div>`
+    main += `<p><strong>Miles:</strong> ${vehicle.inv_miles}</p>\n</div>\n</div>`
   } else {
     main += '<p class="notice">Sorry, that vehicle could not be found.</p>'
   }
