@@ -36,7 +36,7 @@ Util.buildClassificationGrid = async function(data){
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model
       + 'details"><img src="' + vehicle.inv_thumbnail
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model
+      +'" alt="'+ vehicle.inv_make + ' ' + vehicle.inv_model
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
       grid += '<hr />'
@@ -65,7 +65,7 @@ Util.buildVehicleDetail = async function(data){
   if(data.length > 0){
     vehicle = data[0]
     main = '<div id="inv-details-display">'
-    main += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors">
+    main += `<img src="${vehicle.inv_image}" alt="${vehicle.inv_color} ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors">
     <div class="vehicleDetails">`
     main += `<h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>`
     main += `<p><strong>Price:</strong> <span>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span></p>`
