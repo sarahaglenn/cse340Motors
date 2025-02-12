@@ -21,13 +21,13 @@
                             <fieldset>
                                 <label for="account_firstname" class="required">First name</label><br>
                                 <input type="text" name="account_firstname" id="account_firstname" required
-                                    placeholder="Jane" autofocus><br>
+                                    placeholder="Jane" autofocus value="<%= locals.account_firstname %>"><br>
                                 <label for="account_lastname" class="required">Last name</label><br>
                                 <input type="text" name="account_lastname" id="account_lastname" required
-                                    placeholder="Doe"><br>
+                                    placeholder="Doe" value="<%= locals.account_lastname %>"><br>
                                 <label for="account_email" class="required">Email</label><br>
                                 <input type="email" name="account_email" id="account_email" required
-                                    placeholder="someone@mail.com"><br>
+                                    placeholder="someone@mail.com" value="<%= locals.account_email %>"><br>
                                 <label for="account_password" class="required">Password</label><br>
                                 <input type="password" name="account_password" id="account_password"
                                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
