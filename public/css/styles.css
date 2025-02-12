@@ -215,7 +215,8 @@ section {
   opacity: 0.5;
 }
 /* Login page */
-.login-form-container {
+.login-form-container,
+.registerContainer {
   max-width: 80%;
   min-width: 300px;
   margin: 0 auto;
@@ -226,12 +227,13 @@ form legend {
 form label {
   padding-top: 10px;
 }
+form input[type='text'],
 form input[type='email'],
 form input[type='password'] {
   display: block;
   width: 100%;
   height: 30px;
-  margin: 10px auto;
+  margin: 0 auto;
 }
 form input[type='submit'] {
   display: block;
@@ -246,7 +248,7 @@ form input[type='submit'] {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-  margin: 10px auto;
+  margin: 20px auto;
   font-size: var(--large-font);
   box-shadow: 5px 4px 6px black;
 }
@@ -255,9 +257,48 @@ input[type='submit']:hover {
 }
 .login-form-container p {
   text-align: center;
+  margin: 0;
+}
+#requirements {
+  text-align: left;
+  margin-top: 2px;
+  font-size: smaller;
 }
 .login-form-container a {
   color: var(--highlight-color);
+}
+.required:after {
+  content: ' *';
+  color: red;
+}
+#showPswBtn {
+  display: block;
+  border: 2px solid var(--highlight-color);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: 1px 1px 3px var(--dark-grey);
+  padding: 2px;
+  margin: 0.5em 0;
+  font-size: small;
+  width: 10em;
+  text-align: center;
+}
+input:valid {
+  background-color: rgb(233, 247, 233);
+  border: 1px var(--dark-grey) solid;
+}
+input:invalid {
+  background-color: rgb(254, 226, 226);
+  border: 2px rgb(154, 59, 59) solid;
+}
+.notice {
+  color: rgb(154, 10, 10);
+}
+fieldset span {
+  cursor: pointer;
 }
 
 /* media queries */

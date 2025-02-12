@@ -3,8 +3,18 @@ const express = require("express")
 const router = new express.Router()
 const accountController = require("../controllers/accountController")
 const util = require("../utilities")
+const regValidate = require("../utilities/account-validation")
 
-// Route to build inventory by classification view
+// Route to build login page
 router.get("/login", util.handleErrors(accountController.buildLogin));
+
+// Route to build registration page
+router.get("/register", util.handleErrors(accountController.buildRegister))
+
+// Route to register new account
+router.post("/register", 
+    regValidate.registrationRules(),
+    regValidate.checkRegData,
+    util.handleErrors(accountController.registerAccount))
 
 module.exports = router;

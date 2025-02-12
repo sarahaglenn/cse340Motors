@@ -161,7 +161,7 @@ VALUES   (
     'Cadillac',
     'Escalade',
     '2019',
-    'This stylin\' car is great for any occasion from going to the beach to meeting the president. The luxurious inside makes this car a home away from home.',
+    'This stylin car is great for any occasion from going to the beach to meeting the president. The luxurious inside makes this car a home away from home.',
     '/images/escalade.jpg',
     '/images/escalade-tn.jpg',
     75195,
