@@ -61,7 +61,6 @@ validate.checkRegData = async (req, res, next) => {
   const { account_firstname, account_lastname, account_email } = req.body
   let errors = []
   errors = validationResult(req)
-  console.log(errors)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
     res.render("account/register", {
@@ -70,6 +69,57 @@ validate.checkRegData = async (req, res, next) => {
       nav,
       account_firstname,
       account_lastname,
+      account_email,
+    })
+    return
+  }
+  next()
+}
+
+/*  **********************************
+  *  Login Data Validation Rules
+  * ********************************* */
+validate.loginRules = () => {
+   return [
+     // valid email is required and cannot already exist in the DB
+     body("account_email")
+     .trim()
+     .escape()
+     .notEmpty()
+     .withMessage("Email is required.")
+     .bail()
+     .isEmail() // must do this first, before normalize
+     .withMessage("A valid email is required.")
+     .bail()
+     .normalizeEmail(),
+
+     // password is required and must be strong password
+     body("account_password")
+       .trim()
+       .isStrongPassword({ // can add option to return a strength score
+         minLength: 12,
+         minLowercase: 1,
+         minUppercase: 1,
+         minNumbers: 1,
+         minSymbols: 1,
+       })
+       .withMessage("Password does not meet requirements."),
+    ]
+}
+
+/* ******************************
+ * Check data and return errors or continue to login
+ * ***************************** */
+validate.checkLogData = async (req, res, next) => {
+  const { account_email } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/login", {
+      errors,
+      title: "Login",
+      nav,
       account_email,
     })
     return
