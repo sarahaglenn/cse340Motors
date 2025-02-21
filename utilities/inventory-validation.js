@@ -91,21 +91,37 @@ validate.vehicleRules = () => {
         .trim()
         .escape()
         .notEmpty()
-        .withMessage("Image filepath is required."),
+        .withMessage("Image filepath is required.")
+        .bail()
+        .custom(value => {
+            const decodedValue = value.replace(/&#x2F;/g, '/');
+            if (!/^\/images\/vehicles\/[\w\d-]+(\.[a-zA-Z]+)$/.test(decodedValue)) {
+                throw new Error("Image filepath must be in the format /images/vehicles/car.png");
+            }
+            return true;
+        }),
 
     // img thumbnail filepath is required
     body("inv_thumbnail")
         .trim()
         .escape()
         .notEmpty()
-        .withMessage("Image thumbnail filepath is required."),
+        .withMessage("Thumbnail filepath is required.")
+        .bail()
+        .custom(value => {
+            const decodedValue = value.replace(/&#x2F;/g, '/');
+            if (!/^\/images\/vehicles\/[\w\d-]+(\.[a-zA-Z]+)$/.test(decodedValue)) {
+                throw new Error("Thumbnail filepath must be in the format /images/vehicles/car.png");
+            }
+            return true;
+        }),
 
     // price is required, can be int or decimal
     body("inv_price")
        .trim()
        .isCurrency()
        .bail()
-       .withMessage("Please enter valid price."),
+       .withMessage("Please enter the price."),
 
     // mileage is required, must be int
     body("inv_miles")

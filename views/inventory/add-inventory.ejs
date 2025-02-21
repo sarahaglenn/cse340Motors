@@ -33,14 +33,16 @@
                                     <input type="number" name="inv_year" id="inv_year" required
                                         value="<%= locals.inv_year %>" placeholder="4-digit year" min="1000">
                                     <label for="inv_description" class="required">Description</label>
-                                    <textarea name="inv_description" id="inv_description" required
-                                        ows="4" cols="50"><%= locals.inv_description %></textarea>
+                                    <textarea name="inv_description" id="inv_description" required ows="4"
+                                        cols="50"><%= locals.inv_description %></textarea>
                                     <label for="inv_image" class="required">Image Path</label>
                                     <input type="text" name="inv_image" id="inv_image" required
-                                        value="<%= locals.inv_image %>" pattern="^\/images\/vehicles\/.+\..+$">
+                                        value="<%= locals.inv_image.replace(/&#x2F;/g, '/') %>" %>"
+                                    pattern="^\/images\/vehicles\/.+\..+$">
                                     <label for="inv_thumbnail" class="required">Thumbnail Path</label>
                                     <input type="text" name="inv_thumbnail" id="inv_thumbnail" required
-                                        value="<%= locals.inv_thumbnail %>" pattern="^\/images\/vehicles\/.+\..+$">
+                                        value="<%= locals.inv_thumbnail.replace(/&#x2F;/g, '/') %>"
+                                        pattern="^\/images\/vehicles\/.+\..+$">
                                     <label for="inv_price" class="required">Price</label>
                                     <input type="number" name="inv_price" id="inv_price" required min=0 step=".01"
                                         value="<%= locals.inv_price %>" placeholder="decimal or integer">
