@@ -18,10 +18,11 @@
                         <form action="/account/login" method="post">
                             <fieldset>
                                 <legend>Account Details</legend>
-                                <label for="account_email" class="required">Email</label><br>
+                                <br>
+                                <label for="account_email" class="required">Email</label>
                                 <input type="email" name="account_email" id="account_email" required
-                                    placeholder="someone@mail.com" autofocus value="<%= locals.account_email %>"><br>
-                                <label for="account_password" class="required">Password</label><br>
+                                    placeholder="someone@mail.com" autofocus value="<%= locals.account_email %>">
+                                <label for="account_password" class="required">Password</label>
                                 <input type="password" name="account_password" id="account_password"
                                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
                                 <p id="requirements">Passwords must be at least 12 characters and contain 1 uppercase

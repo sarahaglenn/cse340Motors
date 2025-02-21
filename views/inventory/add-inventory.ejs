@@ -18,8 +18,8 @@
                         <form action="/inv/add-inventory" method="post">
                             <fieldset>
                                 <legend>Vehicle details</legend>
-                                <p>All fields are required</p>
-                                <label for="classification_id" class="required">Classification</label>
+                                <br>
+                                <label for="classificationList" class="required">Classification</label>
                                 <%- selectList %>
                                     <label for="inv_make" class="required">Make</label>
                                     <input type="text" name="inv_make" id="inv_make" required autofocus
@@ -33,7 +33,7 @@
                                     <input type="number" name="inv_year" id="inv_year" required
                                         value="<%= locals.inv_year %>" placeholder="4-digit year" min="1000">
                                     <label for="inv_description" class="required">Description</label>
-                                    <textarea name="inv_description" id="inv_description" required ows="4"
+                                    <textarea name="inv_description" id="inv_description" required rows="4"
                                         cols="50"><%= locals.inv_description %></textarea>
                                     <label for="inv_image" class="required">Image Path</label>
                                     <input type="text" name="inv_image" id="inv_image" required
@@ -52,6 +52,7 @@
                                     <label for="inv_color" class="required">Color</label>
                                     <input type="text" name="inv_color" id="inv_color" required
                                         value="<%= locals.inv_color %>">
+                                    <p><strong>*All fields are required</strong></p>
                                     <input id="addInventory" type="submit" value="Add Inventory">
                             </fieldset>
                         </form>

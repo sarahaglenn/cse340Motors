@@ -17,8 +17,9 @@
                     <div class="add-classification-form-container">
                         <form action="/inv/add-classification" method="post">
                             <fieldset>
-                                <legend>Classification Name</legend>
-                                <label for="classification_name" class="required">Name</label><br>
+                                <legend>Classification name</legend>
+                                <br>
+                                <label for="classification_name" class="required">Name</label>
                                 <input type="text" name="classification_name" id="classification_name" required
                                     autofocus value="<%= locals.classification_name %>" pattern="^[A-Z][a-zA-Z]*$">
                                 <p id="requirements">Name must be letters only and begin with an uppercase.</p>
