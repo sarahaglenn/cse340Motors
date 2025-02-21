@@ -37,11 +37,11 @@
                                         cols="50"><%= locals.inv_description %></textarea>
                                     <label for="inv_image" class="required">Image Path</label>
                                     <input type="text" name="inv_image" id="inv_image" required
-                                        value="<%= locals.inv_image.replace(/&#x2F;/g, '/') %>" %>"
-                                    pattern="^\/images\/vehicles\/.+\..+$">
+                                        value="<%= (locals.inv_image || '').replace(/&#x2F;/g, '/') %>"
+                                        pattern="^\/images\/vehicles\/.+\..+$">
                                     <label for="inv_thumbnail" class="required">Thumbnail Path</label>
                                     <input type="text" name="inv_thumbnail" id="inv_thumbnail" required
-                                        value="<%= locals.inv_thumbnail.replace(/&#x2F;/g, '/') %>"
+                                        value="<%= (locals.inv_thumbnail || '').replace(/&#x2F;/g, '/') %>"
                                         pattern="^\/images\/vehicles\/.+\..+$">
                                     <label for="inv_price" class="required">Price</label>
                                     <input type="number" name="inv_price" id="inv_price" required min=0 step=".01"
