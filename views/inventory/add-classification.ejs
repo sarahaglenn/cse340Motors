@@ -1,0 +1,28 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+
+        <%- messages() %>
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+                    <div class="add-classification-form-container">
+                        <form action="/inv/add-classification" method="post">
+                            <fieldset>
+                                <legend>Classification Name</legend>
+                                <label for="classification_name" class="required">Name</label><br>
+                                <input type="text" name="classification_name" id="classification_name" required
+                                    autofocus value="<%= locals.classification_name %>" pattern="^[A-Z][a-zA-Z]*$">
+                                <p id="requirements">Name must be letters only and begin with an uppercase.</p>
+                                <input id="addClassification" type="submit" value="Add Classification">
+                            </fieldset>
+                        </form>
+                    </div>

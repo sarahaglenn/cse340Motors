@@ -67,25 +67,29 @@ nav {
 }
 nav ul {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   list-style-type: none;
   margin: 0;
   padding: 0;
   background-color: var(--secondary-color);
 }
 nav li {
-  display: inline-block;
+  flex: 1 1 auto;
   text-align: center;
-  padding: 3vw 2vw;
-  color: white;
-  transition: 0.3s;
 }
 nav a {
+  display: block;
   color: white;
+  padding: 1em 0.5em;
   text-decoration: none;
-  font-size: 4vw;
+  font-size: 3vw;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
 }
-nav li:hover {
+nav a:hover {
   background-color: var(--highlight-color);
 }
 section {
@@ -216,7 +220,9 @@ section {
 }
 /* Login page */
 .login-form-container,
-.registerContainer {
+.registerContainer,
+.add-classification-form-container,
+.add-inventory-form-container {
   max-width: 80%;
   min-width: 300px;
   margin: 0 auto;
@@ -229,17 +235,32 @@ form label {
 }
 form input[type='text'],
 form input[type='email'],
-form input[type='password'] {
+form input[type='password'],
+form input[type='number'],
+form select,
+form textarea {
   display: block;
   width: 100%;
   height: 30px;
   margin: 0 auto;
 }
+form textarea {
+  height: 100px;
+}
+form select,
+#inv_price,
+#inv_make,
+#inv_model,
+#inv_miles,
+#inv_color,
+#inv_year {
+  width: 50%;
+  margin: 0;
+}
 form input[type='submit'] {
   display: block;
   background-color: var(--highlight-color);
   color: white;
-  padding: 15px;
   cursor: pointer;
   width: 150px;
   height: 56px;
@@ -300,19 +321,38 @@ input:invalid {
 fieldset span {
   cursor: pointer;
 }
+/* Vehicle Management Page */
+#link-box {
+  margin-left: 6vw;
+}
+#link-box a {
+  display: inline-block;
+  color: var(--highlight-color);
+  text-decoration: none;
+  padding: 10px;
+}
+#link-box a:hover {
+  text-decoration: underline;
+}
+/* Add New Classification page */
+#addClassification {
+  width: 200px;
+  height: 45px;
+  padding: 0;
+}
 
 /* media queries */
-@media (min-width: 500px) {
+@media (min-width: 550px) {
   body {
     background-image: url('../images/site/small_check.jpg');
     background-size: auto;
   }
   nav a {
-    font-size: var(--large-font);
+    font-size: 2.7vw;
   }
   #wrapper {
     background-color: white;
-    max-width: 80%;
+    max-width: 90%;
     border: 4px solid #e96632;
     border-radius: 7px;
     -webkit-border-radius: 7px;
@@ -355,6 +395,12 @@ fieldset span {
   }
 }
 @media (min-width: 770px) {
+  #wrapper {
+    max-width: 85%;
+  }
+  nav a {
+    font-size: 20px;
+  }
   .review-upgrades {
     display: flex;
     flex-direction: row;
@@ -373,11 +419,6 @@ fieldset span {
   }
 }
 @media (min-width: 875px) {
-  header,
-  footer {
-    /* margin: 3vh 5vw; */
-    max-width: 80%;
-  }
   h1 {
     margin-left: 5vw;
   }
