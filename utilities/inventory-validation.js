@@ -96,7 +96,7 @@ validate.vehicleRules = () => {
         .custom(value => {
             const decodedValue = value.replace(/&#x2F;/g, '/');
             if (!/^\/images\/vehicles\/[\w\d-]+(\.[a-zA-Z]+)$/.test(decodedValue)) {
-                throw new Error("Image filepath must be in the format /images/vehicles/car.png");
+                throw new Error("Image filepath must be in the format: \"/images/vehicles/car.png\"");
             }
             return true;
         }),
@@ -111,7 +111,7 @@ validate.vehicleRules = () => {
         .custom(value => {
             const decodedValue = value.replace(/&#x2F;/g, '/');
             if (!/^\/images\/vehicles\/[\w\d-]+(\.[a-zA-Z]+)$/.test(decodedValue)) {
-                throw new Error("Thumbnail filepath must be in the format /images/vehicles/car.png");
+                throw new Error("Thumbnail filepath must be in the format: \"/images/vehicles/car.png\"");
             }
             return true;
         }),
