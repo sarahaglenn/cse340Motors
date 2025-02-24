@@ -304,11 +304,15 @@ input[type='submit']:hover {
   width: 10em;
   text-align: center;
 }
-input:valid {
+input:valid,
+textarea:valid,
+select:valid {
   background-color: rgb(233, 247, 233);
   border: 1px var(--dark-grey) solid;
 }
-input:invalid {
+input:invalid,
+textarea:invalid,
+select:invalid {
   background-color: rgb(254, 226, 226);
   border: 2px rgb(154, 59, 59) solid;
 }
