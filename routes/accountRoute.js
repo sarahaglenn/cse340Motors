@@ -5,14 +5,17 @@ const accountController = require("../controllers/accountController")
 const util = require("../utilities")
 const regValidate = require("../utilities/account-validation")
 
+// Default route - account management
+router. get("/", util.handleErrors(accountController.buildAccountManagement))
+
 // Route to build login page
-router.get("/login", util.handleErrors(accountController.buildLogin));
+router.get("/login", util.handleErrors(accountController.buildLogin))
 
 // Route to process login attempt
 router.post("/login", 
     regValidate.loginRules(),
     regValidate.checkLogData,
-    (req, res) => {res.status(200).send('login process')})
+    util.handleErrors(accountController.accountLogin))
 
 // Route to build registration page
 router.get("/register", util.handleErrors(accountController.buildRegister))
