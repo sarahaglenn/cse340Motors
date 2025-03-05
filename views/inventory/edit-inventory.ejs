@@ -15,7 +15,7 @@
                 </ul>
                 <% } %>
                     <div class="edit-inventory-form-container">
-                        <form action="/inv/editInv" method="post">
+                        <form action="/inv/editInv" method="post" id="updateForm">
                             <fieldset>
                                 <legend>Vehicle details</legend>
                                 <br>
@@ -53,10 +53,11 @@
                                     <input type="text" name="inv_color" id="inv_color" required
                                         value="<%= locals.inv_color %>">
                                     <p><strong>*All fields are required</strong></p>
-                                    <input id="updateInventory" type="submit" name="submit" value="Update Vehicle">
+                                    <input id="updateInventory" disabled type="submit" name="submit" value="Update Vehicle">
                                     <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%=
                                         locals.inv_id %>"
                                         <% } %>>
                             </fieldset>
                         </form>
                     </div>
+                    <script src="/js/inv-update.js"></script>
