@@ -222,7 +222,8 @@ section {
 .login-form-container,
 .registerContainer,
 .add-classification-form-container,
-.add-inventory-form-container {
+.add-inventory-form-container,
+.edit-inventory-form-container {
   max-width: 80%;
   min-width: 300px;
   margin: 0 auto;

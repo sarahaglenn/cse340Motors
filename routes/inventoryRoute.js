@@ -32,6 +32,18 @@ router.get("/type/:classificationId", util.handleErrors(invController.buildByCla
 // Route to get a single vehicle by detail view
 router.get("/detail/:inventoryId", util.handleErrors(invController.buildByInventoryId));
 
+// Route to view vehicle edit page
+router.get("/edit/:inventory_id", util.handleErrors(invController.buildEditInventory))
+
+// Route to update inventory in database
+router.post("/editInv",
+    invValidate.vehicleRules(),
+    invValidate.checkUpdateData,
+    util.handleErrors(invController.updateInventory))
+
+// Route to get inventory list
+router.get("/getInventory/:classificationId", util.handleErrors(invController.getInventoryJSON))
+
 // Intentional error route
 router.get("/cars", util.handleErrors(invController.buildByClassificationId))
 

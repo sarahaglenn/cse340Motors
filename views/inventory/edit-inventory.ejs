@@ -14,8 +14,8 @@
                         <% }) %>
                 </ul>
                 <% } %>
-                    <div class="add-inventory-form-container">
-                        <form action="/inv/add-inventory" method="post">
+                    <div class="edit-inventory-form-container">
+                        <form action="/inv/editInv" method="post">
                             <fieldset>
                                 <legend>Vehicle details</legend>
                                 <br>
@@ -53,7 +53,10 @@
                                     <input type="text" name="inv_color" id="inv_color" required
                                         value="<%= locals.inv_color %>">
                                     <p><strong>*All fields are required</strong></p>
-                                    <input id="addInventory" type="submit" value="Add Inventory">
+                                    <input id="updateInventory" type="submit" name="submit" value="Update Vehicle">
+                                    <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%=
+                                        locals.inv_id %>"
+                                        <% } %>>
                             </fieldset>
                         </form>
                     </div>
