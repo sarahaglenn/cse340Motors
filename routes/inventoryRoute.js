@@ -41,6 +41,14 @@ router.post("/editInv",
     invValidate.checkUpdateData,
     util.handleErrors(invController.updateInventory))
 
+// Route to get delete view
+router.get("/delete/:inventory_id", util.handleErrors(invController.buildDeleteInv))
+
+// Route to process deleting from inventory
+router.post("/delete",
+    util.handleErrors(invController.deleteInventory)
+)
+
 // Route to get inventory list
 router.get("/getInventory/:classificationId", util.handleErrors(invController.getInventoryJSON))
 
