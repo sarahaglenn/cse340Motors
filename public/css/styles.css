@@ -223,7 +223,8 @@ section {
 .registerContainer,
 .add-classification-form-container,
 .add-inventory-form-container,
-.edit-inventory-form-container {
+.edit-inventory-form-container,
+.delete-inventory-form-container {
   max-width: 80%;
   min-width: 300px;
   margin: 0 auto;
@@ -335,6 +336,25 @@ fieldset span {
 }
 #link-box a:hover {
   text-decoration: underline;
+}
+#link-box select {
+  background-color: white;
+  display: block;
+  height: 30px;
+}
+#inventoryDisplay {
+  margin: 20px 0;
+  border-collapse: collapse;
+}
+#inventoryDisplay thead tr th {
+  padding: 10px;
+}
+#inventoryDisplay tbody td {
+  padding: 0;
+  margin: 0;
+}
+#inventoryDisplay tbody tr:nth-child(odd) {
+  background-color: #fff1ea;
 }
 /* Add New Classification page */
 #addClassification {
