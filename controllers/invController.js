@@ -46,7 +46,6 @@ invCont.buildByInventoryId = async function (req, res, next) {
 invCont.buildInvManagement = async function (req, res, next) {
   const nav = await utilities.getNav()
   const classificationSelect = await utilities.buildClassificationList()
-  console.log(classificationSelect)
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
@@ -131,6 +130,7 @@ invCont.addInventory = async function (req, res) {
       "notice",
       `${inv_make} ${inv_model} has been added to inventory.`
     )
+
     res.status(201).render("inventory/management", {
       title: "Vehicle Management",
       nav,
