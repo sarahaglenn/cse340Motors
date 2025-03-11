@@ -34,12 +34,12 @@ router.get("/update/:account_id",
 router.post("/update",
     regValidate.updateAccountRules(),
     regValidate.checkUpdateData,
-    util.handleErrors(accountController.updateAccount))
+    util.handleErrors(accountController.updateAccountDetails))
 
 // Route to change password
 router.post("/updatePassword",
     regValidate.updatePasswordRules(),
     regValidate.checkUpdateData,
-    util.handleErrors(accountController.updatePassword))
+    util.handleErrors(accountController.changePassword))
 
 module.exports = router;
