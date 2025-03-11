@@ -107,7 +107,6 @@ Util.buildAccountMain = async function (req, res) {
   let main = `<h2>Welcome ${res.locals.accountData.account_firstname}</h2>`
   main += "<p>You're logged in.</p>"
   main += `<a href="/account/update/${res.locals.accountData.account_id}">Update Account Information</a>`
-  console.log("made it past id")
   if (res.locals.accountData.account_type == 'Employee'
     ||res.locals.accountData.account_type == 'Admin'
   ) {

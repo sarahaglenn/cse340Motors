@@ -154,7 +154,7 @@ async function updateAccountDetails(req, res) {
   if (updateResult) {
     req.flash(
       "notice",
-      `Congratulations, ${account_firstname}, your account has been updated!`
+      `${account_firstname}, your account has been updated.`
     )
     res.status(201).render("account/management", {
       title: "Account Management",
