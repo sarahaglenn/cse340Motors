@@ -103,12 +103,42 @@ Util.buildClassificationList = async function (classification_id = null) {
     return classificationList
   }
 
+Util.buildAccountMain = async function (req, res) {
+  let main = `<h2>Welcome ${res.locals.accountData.account_firstname}</h2>`
+  main += "<p>You're logged in.</p>"
+  main += `<a href="/account/update/${res.locals.accountData.account_id}">Update Account Information</a>`
+  console.log("made it past id")
+  if (res.locals.accountData.account_type == 'Employee'
+    ||res.locals.accountData.account_type == 'Admin'
+  ) {
+    main += `<h3>Inventory Management</h3>
+    <p><a href="/inv">Manage Inventory</a></p>`
+  }
+  return main
+}
+
 /* ****************************************
  * Middleware For Handling Errors
- * Wrap other function in this for 
+ * Wrap other function in this for
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+/* ****************************************
+* Middleware to get user data from jwt
+**************************************** */
+Util.getUserData = (req, res, next) => {
+  if(!req.cookies.jwt) {
+    return next();
+  }
+jwt.verify(
+  req.cookies.jwt,
+  process.env.ACCESS_TOKEN_SECRET,
+  function (err, accountData) {
+  res.locals.accountData = accountData
+  next()
+   })
+}
 
 /* ****************************************
 * Middleware to check token validity
