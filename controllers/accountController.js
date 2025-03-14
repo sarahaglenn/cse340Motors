@@ -100,7 +100,7 @@ async function accountLogin(req, res) {
     } else {
       res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
     }
-  return res.redirect("/account/management")
+  return res.redirect("/account/")
   }
  } catch (error) {
   return new Error('Access Forbidden')
@@ -204,7 +204,7 @@ async function changePassword(req, res) {
   if (changePassResult) {
     req.flash(
       "notice",
-      `Congratulations, ${account_firstname}, your password has been changed.`
+      `${res.locals.accountData.account_firstname}, your password has been changed.`
     )
     res.status(201).render("account/management", {
       title: "Account Management",

@@ -37,7 +37,7 @@ router.post("/update",
     util.handleErrors(accountController.updateAccountDetails))
 
 // Route to change password
-router.post("/updatePassword",
+router.post("/changePassword",
     regValidate.updatePasswordRules(),
     regValidate.checkUpdateData,
     util.handleErrors(accountController.changePassword))

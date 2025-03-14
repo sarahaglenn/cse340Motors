@@ -197,7 +197,7 @@ validate.checkUpdateData = async (req, res, next) => {
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    res.render("account/update", {
+    res.render("account/update", { // I think I need the id here?
       errors,
       title: "Account Management",
       accountData: req.body,

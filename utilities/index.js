@@ -178,14 +178,16 @@ Util.checkJWTToken = (req, res, next) => {
  *  Middleware to check account type
  * ************************************ */
  Util.checkAccountType = (req, res, next) => {
-  if (res.locals.accountData.account_type == 'Employee'
-      || res.locals.accountData.account_type == 'Admin')
-  {
-    next()
-  } else {
-    req.flash("notice", "Please log in with employee credentials to access employee features.")
-    return res.redirect("/account/login")
-  }
- }
+  Util.checkLogin(req, res, () => {
+    if (res.locals.accountData.account_type == 'Employee'
+        || res.locals.accountData.account_type == 'Admin')
+    {
+      next()
+    } else {
+      req.flash("notice", "Please log in with employee credentials to access employee features.")
+      return res.redirect("/account/login")
+    }
+  })
+}
 
 module.exports = Util
