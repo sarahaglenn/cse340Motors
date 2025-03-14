@@ -17,6 +17,9 @@ router.post("/login",
     regValidate.checkLogData,
     util.handleErrors(accountController.accountLogin))
 
+// Route to process logout
+router.post("/logout", util.handleErrors(accountController.accountLogout))
+
 // Route to build registration page
 router.get("/register", util.handleErrors(accountController.buildRegister))
 

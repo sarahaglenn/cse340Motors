@@ -108,6 +108,14 @@ async function accountLogin(req, res) {
 }
 
 /* ****************************************
+ *  Process logout
+ * ************************************ */
+async function accountLogout(req, res, next) {
+ utilities.removeJWTToken(req, res, next)
+ res.redirect("/")
+}
+
+/* ****************************************
 *  Deliver management view
 * *************************************** */
 async function buildAccountManagement(req, res, next) {
@@ -223,4 +231,4 @@ async function changePassword(req, res) {
 }
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdate, updateAccountDetails, changePassword }
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdate, updateAccountDetails, changePassword, accountLogout }
