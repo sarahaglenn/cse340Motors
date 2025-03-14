@@ -104,14 +104,15 @@ Util.buildClassificationList = async function (classification_id = null) {
   }
 
 Util.buildAccountMain = async function (req, res) {
-  let main = `<h2>Welcome ${res.locals.accountData.account_firstname}</h2>`
+  let main = `<div class="mainContainer">`
+  main += `<h2>Welcome, ${res.locals.accountData.account_firstname}</h2>`
   main += "<p>You're logged in.</p>"
   main += `<a href="/account/update/${res.locals.accountData.account_id}">Update Account Information</a>`
   if (res.locals.accountData.account_type == 'Employee'
     ||res.locals.accountData.account_type == 'Admin'
   ) {
     main += `<h3>Inventory Management</h3>
-    <p><a href="/inv">Manage Inventory</a></p>`
+    <p><a href="/inv">Manage Inventory</a></p></div>`
   }
   return main
 }

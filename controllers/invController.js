@@ -9,15 +9,25 @@ const invCont = {}
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId
   const data = await invModel.getInventoryByClassificationId(classification_id)
-  const grid = await utilities.buildClassificationGrid(data)
+  let grid = await utilities.buildClassificationGrid(data)
   const nav = await utilities.getNav()
-  const className = data[0].classification_name
-  res.render("./inventory/classification", {
-    title: className + " vehicles",
-    nav,
-    grid,
-    errors: null,
-  })
+  if (data.length == 0) {
+    grid = `<div class="mainContainer"><p>We don't currently have this in stock. Check back later</p></div>`
+    res.render("./inventory/classification", {
+      title: "Out of Stock",
+      nav,
+      grid,
+      errors: null
+    })
+  } else {
+    const className = data[0].classification_name
+    res.render("./inventory/classification", {
+      title: className + " vehicles",
+      nav,
+      grid,
+      errors: null,
+    })
+  }
 }
 
 /* ***************************
