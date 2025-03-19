@@ -122,7 +122,7 @@ async function accountLogin(req, res) {
  *  Process logout
  * ************************************ */
 async function accountLogout(req, res, next) {
- utilities.removeJWTToken(req, res, next)
+ utilities.removeJWTToken(req, res)
  res.redirect("/")
 }
 

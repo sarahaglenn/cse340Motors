@@ -166,12 +166,11 @@ Util.checkJWTToken = (req, res, next) => {
 /* ****************************************
 * Middleware remove jwt cookie
 **************************************** */
-Util.removeJWTToken = (req, res, next) => {
+Util.removeJWTToken = (req, res) => {
  if (req.cookies.jwt) {
   res.clearCookie("jwt")
   res.locals.loggedin = 0
  }
-  next()
 }
 
 /* ****************************************
