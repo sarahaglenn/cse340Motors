@@ -6,10 +6,14 @@ const util = require("../utilities")
 const invValidate = require("../utilities/inventory-validation")
 
 // Route to build inventory management page
-router.get("/", util.checkAccountType, util.handleErrors(invController.buildInvManagement));
+router.get("/",
+    util.checkAccountType,
+    util.handleErrors(invController.buildInvManagement));
 
 // Route to build add classification page
-router.get("/add-classification", util.checkAccountType, util.handleErrors(invController.buildAddClassification));
+router.get("/add-classification",
+    util.checkAccountType,
+    util.handleErrors(invController.buildAddClassification));
 
 // Route to add new classification to database
 router.post("/add-classification",
@@ -19,7 +23,9 @@ router.post("/add-classification",
     util.handleErrors(invController.addClassification))
 
 // Route to build add inventory page
-router.get("/add-inventory", util.checkAccountType, util.handleErrors(invController.buildAddInventory));
+router.get("/add-inventory",
+    util.checkAccountType,
+    util.handleErrors(invController.buildAddInventory));
 
 // Route to add new inventory to database
 router.post("/add-inventory",
@@ -29,13 +35,17 @@ router.post("/add-inventory",
     util.handleErrors(invController.addInventory))
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId", util.handleErrors(invController.buildByClassificationId));
+router.get("/type/:classificationId",
+    util.handleErrors(invController.buildByClassificationId));
 
 // Route to get a single vehicle by detail view
-router.get("/detail/:inventoryId", util.handleErrors(invController.buildByInventoryId));
+router.get("/detail/:inventoryId",
+    util.handleErrors(invController.buildByInventoryId));
 
 // Route to view vehicle edit page
-router.get("/edit/:inventory_id", util.checkAccountType, util.handleErrors(invController.buildEditInventory))
+router.get("/edit/:inventory_id",
+    util.checkAccountType,
+    util.handleErrors(invController.buildEditInventory))
 
 // Route to update inventory in database
 router.post("/editInv",
@@ -45,7 +55,9 @@ router.post("/editInv",
     util.handleErrors(invController.updateInventory))
 
 // Route to get delete view
-router.get("/delete/:inventory_id", util.checkAccountType, util.handleErrors(invController.buildDeleteInv))
+router.get("/delete/:inventory_id",
+    util.checkAccountType,
+    util.handleErrors(invController.buildDeleteInv))
 
 // Route to process deleting from inventory
 router.post("/delete",
@@ -54,9 +66,11 @@ router.post("/delete",
 )
 
 // Route to get inventory list
-router.get("/getInventory/:classificationId", util.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classificationId",
+    util.handleErrors(invController.getInventoryJSON))
 
 // Intentional error route
-router.get("/cars", util.handleErrors(invController.buildByClassificationId))
+router.get("/cars",
+    util.handleErrors(invController.buildByClassificationId))
 
 module.exports = router;

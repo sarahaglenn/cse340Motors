@@ -18,7 +18,9 @@ router.post("/login",
     util.handleErrors(accountController.accountLogin))
 
 // Route to process logout
-router.post("/logout", util.handleErrors(accountController.accountLogout))
+router.post("/logout",
+    util.checkLogin,
+    util.handleErrors(accountController.accountLogout))
 
 // Route to build registration page
 router.get("/register", util.handleErrors(accountController.buildRegister))
@@ -31,16 +33,19 @@ router.post("/register",
 
 // Route to build update account view
 router.get("/update/:account_id",
+    util.checkLogin,
     util.handleErrors(accountController.buildAccountUpdate))
 
 // Route to update account information
 router.post("/update",
+    util.checkLogin,
     regValidate.updateAccountRules(),
     regValidate.checkUpdateData,
     util.handleErrors(accountController.updateAccountDetails))
 
 // Route to change password
 router.post("/changePassword",
+    util.checkLogin,
     regValidate.updatePasswordRules(),
     regValidate.checkUpdateData,
     util.handleErrors(accountController.changePassword))
