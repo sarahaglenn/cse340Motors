@@ -6,10 +6,14 @@ const util = require("../utilities")
 const regValidate = require("../utilities/account-validation")
 
 // Default route - account management
-router. get("/", util.checkLogin, util.getUserData, util.handleErrors(accountController.buildAccountManagement))
+router. get("/",
+    util.checkLogin,
+    util.getUserData,
+    util.handleErrors(accountController.buildAccountManagement))
 
 // Route to build login page
-router.get("/login", util.handleErrors(accountController.buildLogin))
+router.get("/login",
+    util.handleErrors(accountController.buildLogin))
 
 // Route to process login attempt
 router.post("/login", 
@@ -19,11 +23,11 @@ router.post("/login",
 
 // Route to process logout
 router.post("/logout",
-    util.checkLogin,
     util.handleErrors(accountController.accountLogout))
 
 // Route to build registration page
-router.get("/register", util.handleErrors(accountController.buildRegister))
+router.get("/register",
+    util.handleErrors(accountController.buildRegister))
 
 // Route to register new account
 router.post("/register", 
