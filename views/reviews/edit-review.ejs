@@ -1,0 +1,36 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+
+        <%- messages() %>
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+                    <div class="edit-inventory-form-container">
+                        <form action="/inv/editInv" method="post" id="updateForm">
+                            <fieldset>
+                                <legend>Review details</legend>
+                                <br><label for="review_date">Date</label>
+                                <input type="date" name="review_date" id="review_date" required readonly value="<%= locals.review_date %>">
+                                <label for="review_text">Review Text</label>
+                                <input type="text" name="review_text" id="review_text" required value="<%= locals.review_text %>">
+                                    <p><strong>*All fields are required</strong></p>
+                                    <!-- update javascript to listen for changes (to enable submit) -->
+                                    <input id="updateReview" disabled type="submit" name="submit"
+                                        value="Update Review">
+                                    <input type="hidden" name="review_id" <% if(locals.review_id) { %> value="<%=
+                                        locals.review_id %>"
+                                        <% } %>>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <!-- update javescript/add new file  -->
+                    <script src="/js/inv-update.js"></script> 
