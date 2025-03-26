@@ -91,9 +91,7 @@ Util.buildVehicleReviews = async function(reviewData){
   month: "long",
   day: "numeric",
 };
-  console.log(reviewData)
   if(reviewData.length > 0){
-    console.log(typeof(reviewData[0].review_date))
     reviewData.sort((b, a) => a.review_date - b.review_date)
     for (const review of reviewData) {
       const screenName = await accountModel.getScreenNameById(review.account_id)

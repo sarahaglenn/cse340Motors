@@ -45,7 +45,6 @@ validate.checkReviewData = async (req, res, next) => {
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
     const data = await invModel.getInventoryById(inv_id)
-    console.log("data", data)
     const main = await utilities.buildVehicleDetail(data)
     const reviewData = await reviewModel.getReviewsByInvId(inv_id)
     const reviews = await utilities.buildVehicleReviews(reviewData)
@@ -53,7 +52,6 @@ validate.checkReviewData = async (req, res, next) => {
     const make = data[0].inv_make
     const model = data[0].inv_model
     const pageTitle = `${year} ${make} ${model}`
-    console.log("errors", errors)
     res.render(`inventory/detail`, {
         title: pageTitle,
         nav,
