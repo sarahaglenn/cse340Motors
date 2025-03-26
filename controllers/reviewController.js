@@ -1,9 +1,20 @@
-const invModel = require("../models/inventory-model")
 const reviewModel = require("../models/review-model")
 const accountModel = require("../models/account-model")
 const utilities = require("../utilities/")
 
-const invCont = {}
+const reviewCont = {}
+
+
+
+
+module.exports = reviewCont
+
+
+
+
+
+
+
 
 /* ***************************
  *  Build inventory by classification view
@@ -36,12 +47,9 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build inventory by vehicle details view
  * ************************** */
 invCont.buildByInventoryId = async function (req, res, next) {
-  console.log("locals in buidbyinventoryid", res.locals)
   const inventory_id = req.params.inventoryId
   const data = await invModel.getInventoryById(inventory_id)
   const main = await utilities.buildVehicleDetail(data)
-  const reviewData = await reviewModel.getReviewsByInvId(inventory_id)
-  const reviews = await utilities.buildVehicleReviews(reviewData)
   const nav = await utilities.getNav()
   const year = data[0].inv_year
   const make = data[0].inv_make
@@ -51,7 +59,6 @@ invCont.buildByInventoryId = async function (req, res, next) {
     title: pageTitle,
     nav,
     main,
-    reviews,
     errors: null,
   })
 }
@@ -293,4 +300,3 @@ invCont.deleteInventory = async function (req, res) {
   }
 }
 
-module.exports = invCont

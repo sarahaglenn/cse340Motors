@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const accountModel = require("../models/account-model")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 const Util = {}
@@ -78,6 +79,26 @@ Util.buildVehicleDetail = async function(data){
     main += '<p class="notice">Sorry, that vehicle could not be found.</p>'
   }
   return main;
+}
+
+/* **************************************
+* Build the vehicle reviews view HTML
+* ************************************ */
+Util.buildVehicleReviews = async function(reviewData){
+  let reviews = ""
+  if(reviewData.length > 0){
+    reviewData.rows.sort((b, a) => a.review_date - b.review_date)
+    for (const review of reviewData.rows) {
+      const screenName = await accountModel.getScreenNameById(review.account_id)
+      reviews += `<ul id="vehicleReviews">
+        <li> <strong>${screenName}</strong> wrote on ${review.review_date}
+        <hr>
+        <p>${review.review_text}</p></li></ul>`
+    }
+  } else {
+    reviews += `<p id="firstReview">Be the first to leave a review! </p>`
+  }
+  return reviews;
 }
 
 /* ****************************************

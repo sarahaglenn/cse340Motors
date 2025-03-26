@@ -7,4 +7,26 @@
         <%# messages() %>
 
             <%- main %>
+            <h2>Customer Reviews</h2>
             <%- reviews %>
+                <% if (!locals.loggedin) { %>
+                    <p>You must <a href="/account/login">login</a> to write a review.</p>
+                    <% } else { %>
+                        <div class="create-review-form-container">
+                            <form action="/review" method="post" id="createReviewForm">
+                                <fieldset>
+                                    <legend>Review details</legend>
+                                    <br>
+                                    <label for="screenName">Screen Name</label>
+                                    <input type="text" name="screenName" id="screenName" readonly value="<%= locals.accountData.screenName %>">
+                                    <label for="review_text">Review Text</label>
+                                    <textarea name="review_text" id="review_text" rows="4" cols="50" required></textarea>
+                                    <input id="createReview" type="submit" name="submit" value="Create Review">
+                                    <input type="hidden" name="account_id" value="<%=
+                                      locals.account_id %>">
+                                    <input type="hidden" name="inv_id" value="<%=
+                                      locals.inv_id %>">
+                                </fieldset>
+                            </form>
+                        </div>
+                   <% } %>

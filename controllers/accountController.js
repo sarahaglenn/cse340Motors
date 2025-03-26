@@ -94,6 +94,8 @@ async function accountLogin(req, res) {
  try {
   if (await bcrypt.compare(account_password, accountData.account_password)) {
   delete accountData.account_password
+  const screenName = accountData.account_firstname[0].toUpperCase() + accountData.account_lastname
+  accountData.screenName = screenName
   const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
   if(process.env.NODE_ENV === 'development') {
     res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
