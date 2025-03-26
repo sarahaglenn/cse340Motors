@@ -86,12 +86,19 @@ Util.buildVehicleDetail = async function(data){
 * ************************************ */
 Util.buildVehicleReviews = async function(reviewData){
   let reviews = ""
+  dateOptions = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+  console.log(reviewData)
   if(reviewData.length > 0){
-    reviewData.rows.sort((b, a) => a.review_date - b.review_date)
-    for (const review of reviewData.rows) {
+    console.log(typeof(reviewData[0].review_date))
+    reviewData.sort((b, a) => a.review_date - b.review_date)
+    for (const review of reviewData) {
       const screenName = await accountModel.getScreenNameById(review.account_id)
       reviews += `<ul id="vehicleReviews">
-        <li> <strong>${screenName}</strong> wrote on ${review.review_date}
+        <li> <strong>${screenName}</strong> wrote on ${review.review_date.toLocaleString("en-US", dateOptions)}
         <hr>
         <p>${review.review_text}</p></li></ul>`
     }

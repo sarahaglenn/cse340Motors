@@ -36,7 +36,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build inventory by vehicle details view
  * ************************** */
 invCont.buildByInventoryId = async function (req, res, next) {
-  console.log("locals in buidbyinventoryid", res.locals)
   const inventory_id = req.params.inventoryId
   const data = await invModel.getInventoryById(inventory_id)
   const main = await utilities.buildVehicleDetail(data)
@@ -52,6 +51,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
     nav,
     main,
     reviews,
+    inventory_id,
     errors: null,
   })
 }

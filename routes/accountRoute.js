@@ -16,7 +16,7 @@ router.get("/login",
     util.handleErrors(accountController.buildLogin))
 
 // Route to process login attempt
-router.post("/login", 
+router.post("/login",
     regValidate.loginRules(),
     regValidate.checkLogData,
     util.handleErrors(accountController.accountLogin))
