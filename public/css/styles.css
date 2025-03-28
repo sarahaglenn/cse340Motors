@@ -18,6 +18,7 @@
   --highlight-color: #8f3200;
   --dark-grey: #303030;
   --light-gray: #a2a2a2;
+  --read-only: #def0ff;
   /* sizes */
   --font-base: 18px;
   --small-font: 0.8em;
@@ -239,7 +240,9 @@ section {
 .add-classification-form-container,
 .add-inventory-form-container,
 .edit-inventory-form-container,
-.delete-inventory-form-container {
+.delete-inventory-form-container,
+.edit-review-form-container,
+.delete-review-form-container {
   max-width: 500px;
   min-width: 300px;
   margin: 0 auto;
@@ -256,11 +259,15 @@ form input[type='email'],
 form input[type='password'],
 form input[type='number'],
 form select,
-form textarea {
+form textarea,
+form input[type='date'] {
   display: block;
   width: 100%;
   height: 30px;
   margin: 0 auto 15px;
+}
+input:read-only {
+  background-color: var(--read-only)
 }
 form textarea {
   height: 100px;

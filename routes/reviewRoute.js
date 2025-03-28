@@ -12,5 +12,10 @@ router.post("/",
     util.handleErrors(reviewController.createReview)
 )
 
+// Route to edit a review form
+router.get("/edit/:review_id",
+    util.handleErrors(reviewController.buildEditReview)
+)
+
 
 module.exports = router;

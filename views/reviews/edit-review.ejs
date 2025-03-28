@@ -14,12 +14,12 @@
                         <% }) %>
                 </ul>
                 <% } %>
-                    <div class="edit-inventory-form-container">
+                    <div class="edit-review-form-container">
                         <form action="/inv/editInv" method="post" id="updateForm">
                             <fieldset>
                                 <legend>Review details</legend>
                                 <br><label for="review_date">Date</label>
-                                <input type="date" name="review_date" id="review_date" required readonly value="<%= locals.review_date %>">
+                                <input type="text" name="review_date" id="review_date" required readonly value="<%= locals.review_date %>">
                                 <label for="review_text">Review Text</label>
                                 <input type="text" name="review_text" id="review_text" required value="<%= locals.review_text %>">
                                     <p><strong>*All fields are required</strong></p>

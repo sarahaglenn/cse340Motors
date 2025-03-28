@@ -106,6 +106,37 @@ Util.buildVehicleReviews = async function(reviewData){
   return reviews;
 }
 
+/* **************************************
+* Build the reviews HTML for a single user
+* ************************************ */
+//Things are working up to this point. 
+// examine the review data being passed in and how
+// to finish getting and formatting the info
+// then add links for edit and delete
+// then add edit and delete validation/models/etc.
+
+Util.getSingleUserReviewHTML = async function(reviewData){
+  let reviews = ""
+  dateOptions = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+  if(reviewData.length > 0){
+    reviewData.sort((b, a) => a.review_date - b.review_date)
+    reviews += `<ol id="vehicleReviews">`
+    reviewData.forEach ((review) => {
+      reviews += `<li> Reviewed the ${review.inv_year} ${review.inv_make} ${review.inv_model} on ${review.review_date.toLocaleString("en-US", dateOptions)}
+       | <a href='/review/edit/${review.review_id}' title='Click to update'>Edit</a>
+       | <a href='/review/delete/${review.review_id}' title='Click to delete'>Delete</a></li>`
+    })
+    reviews += "</ol>"
+  } else {
+    reviews += `<p id="firstReview">Leave your first review! </p>`
+  }
+  return reviews;
+}
+
 /* ****************************************
  * Function to build list of vehicle 
  * classifications
