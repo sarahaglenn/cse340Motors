@@ -85,7 +85,6 @@ validate.reviewUpdateRules = () => {
  * ***************************** */
 validate.checkReviewUpdateData = async (req, res, next) => {
   const { carDetails, review_id, review_date, review_text } = req.body
-  console.log("request body", req.body)
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {

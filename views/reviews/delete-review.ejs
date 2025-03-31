@@ -26,7 +26,7 @@
                                     value="<%= locals.review_date %>">
                                 <label for="review_text">Review Text</label>
                                 <input type="text" name="review_text" id="review_text" required
-                                    value="<%= locals.review_text %>" readonly>
+                                    value="<%= (locals.review_text || '').replace(/&#x27;/g, "'") %>" readonly>
                                 <input id="deleteReview" type="submit" name="submit" value="Delete Review">
                                 <input type="hidden" name="review_id" <% if(locals.review_id) { %> value="<%= locals.review_id %>
                                     "

@@ -53,7 +53,6 @@ reviewCont.updateReview = async function (req, res) {
   let nav = await utilities.getNav()
   const { review_id, review_text} = req.body
   account_id = res.locals.accountData.account_id
-  console.log("account_id", account_id)
   const reviewData = await reviewModel.getReviewsByAccountId(account_id)
   reviews = await utilities.getSingleUserReviewHTML(reviewData)
   const main = await utilities.buildAccountMain(req, res)
@@ -62,13 +61,12 @@ reviewCont.updateReview = async function (req, res) {
     review_id,
     review_text
   )
-console.log("update result:", updateResult)
   if (updateResult) {
     req.flash(
       "notice",
       `Your review has been updated.`
     )
-    res.status(201).render("account/", {
+    res.status(201).render("account/management", {
       title: "Account Management",
       nav,
       main,
@@ -77,7 +75,7 @@ console.log("update result:", updateResult)
     })
   } else {
     req.flash("notice", "Sorry, the review could not be updated.")
-    res.status(501).render("account/", {
+    res.status(501).render("account/management", {
       title: "Account Management",
       nav,
       main,
