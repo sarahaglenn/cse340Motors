@@ -63,10 +63,41 @@ async function createReview (account_id, inv_id, review_text) {
   }
 }
 
+/* *****************************
+*   Update account details
+* *************************** */
+async function updateReview(review_id, review_text){
+  try {
+    const sql = `UPDATE public.review
+      SET review_text=$1
+      WHERE review_id=$2
+      RETURNING *`
+    return await pool.query(sql, [review_text, review_id])
+  } catch (error) {
+    return error.message
+  }
+}
+
+/* *****************************
+*   Delete review
+* *************************** */
+async function deleteReview(review_id) {
+  try {
+    const sql = "DELETE FROM public.review WHERE review_id = $1"
+    const result = await pool.query(sql, [review_id])
+    return  result
+  } catch (error) {
+    console.error("Error deleting review:", error)
+    return null
+  }
+}
+
 
 module.exports = {
     getReviewsByInvId,
     createReview,
     getReviewsByAccountId,
-    getReviewById
+    getReviewById,
+    updateReview,
+    deleteReview
 }

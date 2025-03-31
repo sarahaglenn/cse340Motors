@@ -16,12 +16,13 @@
                 <% } %>
                     <div class="delete-review-form-container">
                         <form action="/review/delete" method="post" id="deleteReviewForm">
+                                <input type="hidden" name="carDetails" <% if(locals.carDetails) { %> value="<%= locals.carDetails %>" <% } %>>
                             <fieldset>
                                 <legend>Review details</legend>
                                 <p>Confirm Correct Item - The delete is permanent.</p>
                                 <br>
                                 <label for="review_date">Date</label>
-                                <input type="date" name="review_date" id="review_date" required readonly
+                                <input type="text" name="review_date" id="review_date" required readonly
                                     value="<%= locals.review_date %>">
                                 <label for="review_text">Review Text</label>
                                 <input type="text" name="review_text" id="review_text" required

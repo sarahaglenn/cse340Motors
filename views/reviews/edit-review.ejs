@@ -15,22 +15,21 @@
                 </ul>
                 <% } %>
                     <div class="edit-review-form-container">
-                        <form action="/inv/editInv" method="post" id="updateForm">
+                        <form action="/review/update" method="post" id="updateForm">
+                                <input type="hidden" name="carDetails" <% if(locals.carDetails) { %> value="<%= locals.carDetails %>" <% } %>>
                             <fieldset>
                                 <legend>Review details</legend>
                                 <br><label for="review_date">Date</label>
                                 <input type="text" name="review_date" id="review_date" required readonly value="<%= locals.review_date %>">
                                 <label for="review_text">Review Text</label>
                                 <input type="text" name="review_text" id="review_text" required value="<%= locals.review_text %>">
-                                    <p><strong>*All fields are required</strong></p>
-                                    <!-- update javascript to listen for changes (to enable submit) -->
-                                    <input id="updateReview" disabled type="submit" name="submit"
-                                        value="Update Review">
-                                    <input type="hidden" name="review_id" <% if(locals.review_id) { %> value="<%=
-                                        locals.review_id %>"
-                                        <% } %>>
+                                <p><strong>*All fields are required</strong></p>
+                                <!-- update javascript to listen for changes (to enable submit) -->
+                                <input id="updateReview" type="submit" name="submit"
+                                    value="Update Review">
+                                <input type="hidden" name="review_id" <% if(locals.review_id) { %> value="<%= locals.review_id %>" <% } %>>
                             </fieldset>
                         </form>
                     </div>
                     <!-- update javescript/add new file  -->
-                    <script src="/js/inv-update.js"></script> 
+                    <!-- <script src="/js/inv-update.js"></script>  -->

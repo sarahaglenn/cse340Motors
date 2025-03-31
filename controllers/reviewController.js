@@ -27,7 +27,6 @@ reviewCont.buildEditReview = async function (req, res, next) {
   const review_id = parseInt(req.params.review_id)
   let nav = await utilities.getNav()
   const reviewData = (await reviewModel.getReviewById(review_id))[0]
-  console.log("reviewData so far", reviewData)
   const vehicleData = (await invModel.getInventoryById(reviewData.inv_id))[0]
   dateOptions = {
     year: "numeric",
@@ -35,13 +34,110 @@ reviewCont.buildEditReview = async function (req, res, next) {
     day: "numeric",
   }
   const date = reviewData.review_date.toLocaleString("en-US", dateOptions)
+  const carDetails = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
   res.render("./reviews/edit-review", {
-    title: `Edit Review for ${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`,
+    title: `Edit Review for ${carDetails}`,
     nav,
     errors: null,
+    carDetails,
+    review_id,
     review_date: date,
     review_text: reviewData.review_text,
   })
+}
+
+/* ****************************************
+*  Process Review Update
+* *************************************** */
+reviewCont.updateReview = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { review_id, review_text} = req.body
+  account_id = res.locals.accountData.account_id
+  console.log("account_id", account_id)
+  const reviewData = await reviewModel.getReviewsByAccountId(account_id)
+  reviews = await utilities.getSingleUserReviewHTML(reviewData)
+  const main = await utilities.buildAccountMain(req, res)
+
+  const updateResult = await reviewModel.updateReview(
+    review_id,
+    review_text
+  )
+console.log("update result:", updateResult)
+  if (updateResult) {
+    req.flash(
+      "notice",
+      `Your review has been updated.`
+    )
+    res.status(201).render("account/", {
+      title: "Account Management",
+      nav,
+      main,
+      reviews,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", "Sorry, the review could not be updated.")
+    res.status(501).render("account/", {
+      title: "Account Management",
+      nav,
+      main,
+      reviews,
+      errors: null,
+    })
+  }
+}
+
+/* ***************************
+ *  Build delete review view
+ * ************************** */
+reviewCont.buildDeleteReview = async function (req, res, next) {
+  const review_id = parseInt(req.params.review_id)
+  let nav = await utilities.getNav()
+  const reviewData = (await reviewModel.getReviewById(review_id))[0]
+  const vehicleData = (await invModel.getInventoryById(reviewData.inv_id))[0]
+  dateOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }
+  const date = reviewData.review_date.toLocaleString("en-US", dateOptions)
+  const carDetails = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
+  res.render("./reviews/delete-review", {
+    title: `Confirm Delete Review for ${carDetails}`,
+    nav,
+    errors: null,
+    carDetails,
+    review_id,
+    review_date: date,
+    review_text: reviewData.review_text,
+  })
+}
+
+/* ****************************************
+*  Process deleting review
+* *************************************** */
+reviewCont.deleteReview = async function (req, res) {
+  let nav = await utilities.getNav()
+  const review_id= parseInt(req.body.review_id)
+  const { carDetails } = req.body
+
+  const deleteResult = await reviewModel.deleteReview(review_id)
+
+  if (deleteResult) {
+    req.flash(
+      "notice",
+      `The review was successfully deleted.`
+    )
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the review could not be deleted.")
+    res.status(501).render("review/delete", {
+      title: `Delete ${carDetails}`,
+      nav,
+      errors: null,
+
+    })
+  }
 }
 
 module.exports = reviewCont

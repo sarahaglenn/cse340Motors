@@ -39,7 +39,7 @@ validate.reviewRules = () => {
  * Check review data and return errors or continue to add review
  * ***************************** */
 validate.checkReviewData = async (req, res, next) => {
-  const { review_text, account_id, inv_id } = req.body
+  const { inv_id } = req.body
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -59,6 +59,43 @@ validate.checkReviewData = async (req, res, next) => {
         reviews,
         inventory_id: inv_id,
         errors,
+    })
+    return
+  }
+  next()
+}
+
+/*  **********************************
+  *  Review Data Validation Rules
+  * ********************************* */
+validate.reviewUpdateRules = () => {
+   return [
+    // review text is required and must be a string of at least 3 characters
+    body("review_text")
+       .trim()
+       .escape()
+       .isLength({ min: 3 })
+       .withMessage("Please include a review."),
+    ]
+}
+
+/* ******************************
+ * Check review update data and 
+ * return errors or continue to update review
+ * ***************************** */
+validate.checkReviewUpdateData = async (req, res, next) => {
+  const { carDetails, review_id, review_date, review_text } = req.body
+  console.log("request body", req.body)
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render(`reviews/edit-review`, {
+        title: `Edit Review for ${carDetails}`,
+        nav,
+        errors,
+        review_id,
+        review_date, review_text
     })
     return
   }

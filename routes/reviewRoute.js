@@ -17,5 +17,21 @@ router.get("/edit/:review_id",
     util.handleErrors(reviewController.buildEditReview)
 )
 
+// Route to process a review update
+router.post("/update",
+    reviewValidate.reviewUpdateRules(),
+    reviewValidate.checkReviewUpdateData,
+    util.handleErrors(reviewController.updateReview)
+)
+
+// Route to deliver confirm delete view
+router.get("/delete/:review_id",
+    util.handleErrors(reviewController.buildDeleteReview)
+)
+
+// Route to process deleting a review
+router.post("/delete",
+    util.handleErrors(reviewController.deleteReview)
+)
 
 module.exports = router;
