@@ -104,7 +104,7 @@ async function accountLogin(req, res) {
       res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
     }
   return res.redirect("/account/")
-  } else { // password doesn't match
+  } else { // handles when password doesn't match
     req.flash("notice", "Password is incorrect. Please try again.")
     res.status(400).render("account/login", {
     title: "Login",
@@ -133,8 +133,9 @@ async function accountLogout(req, res, next) {
 async function buildAccountManagement(req, res, next) {
   let nav = await utilities.getNav()
   let main = await utilities.buildAccountMain(req, res, next)
-  let userReviewData = await reviewModel.getReviewsByAccountId(res.locals.accountData.account_id) // pass account id
+  let userReviewData = await reviewModel.getReviewsByAccountId(res.locals.accountData.account_id)
   let reviews = await utilities.getSingleUserReviewHTML(userReviewData)
+  console.log("reviews", reviews)
   res.render("account/management", {
     title: "Account Management",
     nav,

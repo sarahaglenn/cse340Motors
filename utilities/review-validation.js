@@ -21,6 +21,8 @@ validate.reviewRules = () => {
        .trim()
        .escape()
        .notEmpty()
+       .withMessage("account_id is required, please contact admin.")
+       .bail()
        .isInt()
        .withMessage("Account id not found, please contact admin."),
 
@@ -29,6 +31,7 @@ validate.reviewRules = () => {
        .trim()
        .escape()
        .notEmpty()
+       .withMessage("Inventory id is required, please contact admin")
        .bail()
        .isInt()
        .withMessage("Inventory id not found, please contact admin."),

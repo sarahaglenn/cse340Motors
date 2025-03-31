@@ -109,12 +109,6 @@ Util.buildVehicleReviews = async function(reviewData){
 /* **************************************
 * Build the reviews HTML for a single user
 * ************************************ */
-//Things are working up to this point. 
-// examine the review data being passed in and how
-// to finish getting and formatting the info
-// then add links for edit and delete
-// then add edit and delete validation/models/etc.
-
 Util.getSingleUserReviewHTML = async function(reviewData){
   let reviews = ""
   dateOptions = {

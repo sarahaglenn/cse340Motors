@@ -17,19 +17,18 @@ async function getReviewsByInvId (inv_id) {
 
 /* *****************************
 * Return review data using account_id
-Might be best to get less of the inventory data...
 * ***************************** */
 async function getReviewsByAccountId (account_id) {
   try {
     const result = await pool.query(
       'SELECT * FROM review AS r JOIN inventory AS i ON r.inv_id = i.inv_id WHERE r.account_id = $1',
       [account_id])
-    if (result.rows.length > 0) {
+
+    if (result && result.rows.length > 0) {
       return result.rows
     }
-    return
+    return []
   } catch (error) {
-    // How to handle it if there are no reviews for this account
     return new Error("No matching account id found")
   }
 }

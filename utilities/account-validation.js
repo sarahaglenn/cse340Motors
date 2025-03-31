@@ -13,14 +13,14 @@ validate.registrationRules = () => {
        .trim()
        .escape()
        .isLength({ min: 1 })
-       .withMessage("Please provide a first name."), // on error this message is sent.
+       .withMessage("Please provide a first name."),
 
      // last name is required and must be string
      body("account_lastname")
        .trim()
        .escape()
        .isLength({ min: 2 })
-       .withMessage("Please provide a last name."), // on error this message is sent.
+       .withMessage("Please provide a last name."),
 
      // valid email is required and cannot already exist in the DB
      body("account_email")
@@ -32,7 +32,7 @@ validate.registrationRules = () => {
      .isEmail() // must do this first, before normalize
      .withMessage("A valid email is required.")
      .bail()
-     .normalizeEmail() // refer to validator.js docs
+     .normalizeEmail()
      .custom(async (account_email) => {
         const emailExists = await accountModel.checkExistingEmail(account_email)
         if (emailExists) {
@@ -137,14 +137,14 @@ validate.updateAccountRules = (req) => {
        .trim()
        .escape()
        .isLength({ min: 1 })
-       .withMessage("Please provide a first name."), // on error this message is sent.
+       .withMessage("Please provide a first name."),
 
      // last name is required and must be string
      body("account_lastname")
        .trim()
        .escape()
        .isLength({ min: 2 })
-       .withMessage("Please provide a last name."), // on error this message is sent.
+       .withMessage("Please provide a last name."),
 
      // valid email is required and cannot already exist in the DB
      body("account_email")
@@ -153,7 +153,7 @@ validate.updateAccountRules = (req) => {
      .notEmpty()
      .withMessage("Email is required.")
      .bail()
-     .isEmail() // must do this first, before normalize
+     .isEmail()
      .withMessage("A valid email is required.")
      .bail()
      .normalizeEmail()
