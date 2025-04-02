@@ -1,5 +1,4 @@
 const reviewModel = require("../models/review-model")
-const accountModel = require("../models/account-model")
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 
