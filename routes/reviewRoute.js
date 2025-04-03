@@ -7,6 +7,7 @@ const reviewValidate = require("../utilities/review-validation")
 
 // Route to create new review
 router.post("/",
+    util.checkLogin,
     reviewValidate.reviewRules(),
     reviewValidate.checkReviewData,
     util.handleErrors(reviewController.createReview)
@@ -14,11 +15,13 @@ router.post("/",
 
 // Route to edit a review form
 router.get("/edit/:review_id",
+    util.checkLogin,
     util.handleErrors(reviewController.buildEditReview)
 )
 
 // Route to process a review update
 router.post("/update",
+    util.checkLogin,
     reviewValidate.reviewUpdateRules(),
     reviewValidate.checkReviewUpdateData,
     util.handleErrors(reviewController.updateReview)
@@ -26,11 +29,13 @@ router.post("/update",
 
 // Route to deliver confirm delete view
 router.get("/delete/:review_id",
+    util.checkLogin,
     util.handleErrors(reviewController.buildDeleteReview)
 )
 
 // Route to process deleting a review
 router.post("/delete",
+    util.checkLogin,
     util.handleErrors(reviewController.deleteReview)
 )
 

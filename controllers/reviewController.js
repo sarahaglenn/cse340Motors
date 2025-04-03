@@ -34,7 +34,7 @@ reviewCont.buildEditReview = async function (req, res, next) {
   }
   const date = reviewData.review_date.toLocaleString("en-US", dateOptions)
   const carDetails = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
-  if (res.locals.loggedin && reviewData.account_id == res.locals.accountData.account_id) {
+  if (reviewData.account_id == res.locals.accountData.account_id) {
     res.render("./reviews/edit-review", {
       title: `Edit Review for ${carDetails}`,
       nav,
@@ -106,7 +106,7 @@ reviewCont.buildDeleteReview = async function (req, res, next) {
   }
   const date = reviewData.review_date.toLocaleString("en-US", dateOptions)
   const carDetails = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
-  if (res.locals.loggedin && reviewData.account_id == res.locals.accountData.account_id) {
+  if (reviewData.account_id == res.locals.accountData.account_id) {
     res.render("./reviews/delete-review", {
       title: `Confirm Delete Review for ${carDetails}`,
       nav,
