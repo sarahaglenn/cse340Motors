@@ -34,15 +34,21 @@ reviewCont.buildEditReview = async function (req, res, next) {
   }
   const date = reviewData.review_date.toLocaleString("en-US", dateOptions)
   const carDetails = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
-  res.render("./reviews/edit-review", {
-    title: `Edit Review for ${carDetails}`,
-    nav,
-    errors: null,
-    carDetails,
-    review_id,
-    review_date: date,
-    review_text: reviewData.review_text,
-  })
+  if (res.locals.loggedin && reviewData.account_id == res.locals.accountData.account_id) {
+    res.render("./reviews/edit-review", {
+      title: `Edit Review for ${carDetails}`,
+      nav,
+      errors: null,
+      carDetails,
+      review_id,
+      review_date: date,
+      review_text: reviewData.review_text,
+    })
+  }
+  else {
+      req.flash("notice", "To edit this review, please login as the author.")
+      return res.redirect("/account/login")
+  }
 }
 
 /* ****************************************
@@ -91,6 +97,7 @@ reviewCont.buildDeleteReview = async function (req, res, next) {
   const review_id = parseInt(req.params.review_id)
   let nav = await utilities.getNav()
   const reviewData = (await reviewModel.getReviewById(review_id))[0]
+  console.log("reviewData", reviewData)
   const vehicleData = (await invModel.getInventoryById(reviewData.inv_id))[0]
   dateOptions = {
     year: "numeric",
@@ -99,15 +106,21 @@ reviewCont.buildDeleteReview = async function (req, res, next) {
   }
   const date = reviewData.review_date.toLocaleString("en-US", dateOptions)
   const carDetails = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
-  res.render("./reviews/delete-review", {
-    title: `Confirm Delete Review for ${carDetails}`,
-    nav,
-    errors: null,
-    carDetails,
-    review_id,
-    review_date: date,
-    review_text: reviewData.review_text,
-  })
+  if (res.locals.loggedin && reviewData.account_id == res.locals.accountData.account_id) {
+    res.render("./reviews/delete-review", {
+      title: `Confirm Delete Review for ${carDetails}`,
+      nav,
+      errors: null,
+      carDetails,
+      review_id,
+      review_date: date,
+      review_text: reviewData.review_text,
+    })
+  }
+  else {
+      req.flash("notice", "To delete this review, please login as the author.")
+      return res.redirect("/account/login")
+  }
 }
 
 /* ****************************************
