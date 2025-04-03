@@ -95,7 +95,7 @@ Util.buildVehicleReviews = async function(reviewData){
     reviewData.sort((b, a) => a.review_date - b.review_date)
     for (const review of reviewData) {
       const screenName = await accountModel.getScreenNameById(review.account_id)
-      reviews += `<ul id="vehicleReviews">
+      reviews += `<ul>
         <li> <strong>${screenName}</strong> wrote on ${review.review_date.toLocaleString("en-US", dateOptions)}
         <hr>
         <p>${review.review_text}</p></li></ul>`
@@ -118,7 +118,7 @@ Util.getSingleUserReviewHTML = async function(reviewData){
 };
   if(reviewData.length > 0){
     reviewData.sort((b, a) => a.review_date - b.review_date)
-    reviews += `<ol id="vehicleReviews">`
+    reviews += `<ol>`
     reviewData.forEach ((review) => {
       reviews += `<li> Reviewed the ${review.inv_year} ${review.inv_make} ${review.inv_model} on ${review.review_date.toLocaleString("en-US", dateOptions)}
        | <a href='/review/edit/${review.review_id}' title='Click to update'>Edit</a>
