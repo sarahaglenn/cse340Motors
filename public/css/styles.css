@@ -222,7 +222,10 @@ section {
   padding: 0 20px;
 }
 #firstReview {
-  background-color: #FF9A77;
+  background-color: #ff9a77;
+}
+#userVehicleReviews li {
+  margin: 0 0 10px 0;
 }
 /* Error Message Page */
 .error-message {
@@ -267,7 +270,7 @@ form input[type='date'] {
   margin: 0 auto 15px;
 }
 input:read-only {
-  background-color: var(--read-only)
+  background-color: var(--read-only);
 }
 form textarea {
   height: 100px;
