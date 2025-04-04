@@ -224,8 +224,9 @@ section {
 #firstReview {
   background-color: #ff9a77;
 }
-#userVehicleReviews li {
-  margin: 0 0 10px 0;
+#vehicleReviews li {
+  list-style-type: none;
+  margin-bottom: 20px;
 }
 /* Error Message Page */
 .error-message {
@@ -349,7 +350,18 @@ select:invalid {
 }
 .notice {
   background-color: rgb(255, 238, 168);
-  list-style: square;
+  list-style: none;
+  padding: 2px;
+}
+.failure {
+  background-color: rgb(255, 168, 168);
+  list-style: none;
+  padding: 2px;
+}
+.success {
+  background-color: rgb(197, 255, 210);
+  list-style: none;
+  padding: 2px;
 }
 fieldset span {
   cursor: pointer;
@@ -422,7 +434,8 @@ fieldset span {
   h1 {
     margin-left: 5vw;
   }
-  .mainContainer {
+  .mainContainer,
+  .reviewsContainer {
     margin: 0 7vw;
   }
   .banner {

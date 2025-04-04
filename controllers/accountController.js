@@ -41,7 +41,7 @@ async function registerAccount(req, res) {
     // regular password and cost (salt is generated automatically)
     hashedPassword = await bcrypt.hashSync(account_password, 10)
   } catch (error) {
-    req.flash("notice", 'Sorry, there was an error processing the registration.')
+    req.flash("failure", 'Sorry, there was an error processing the registration.')
     res.status(500).render("account/register", {
       title: "Registration",
       nav,
@@ -57,7 +57,7 @@ async function registerAccount(req, res) {
 
   if (regResult) {
     req.flash(
-      "notice",
+      "success",
       `Congratulations, ${account_firstname}, you\'re registered! Please log in.`
     )
     res.status(201).render("account/login", {
@@ -66,7 +66,7 @@ async function registerAccount(req, res) {
       errors: null,
     })
   } else {
-    req.flash("notice", "Sorry, the registration failed.")
+    req.flash("failure", "Sorry, the registration failed.")
     res.status(501).render("account/register", {
       title: "Registration",
       nav,
@@ -105,7 +105,7 @@ async function accountLogin(req, res) {
     }
   return res.redirect("/account/")
   } else { // handles when password doesn't match
-    req.flash("notice", "Password is incorrect. Please try again.")
+    req.flash("failure", "Password is incorrect. Please try again.")
     res.status(400).render("account/login", {
     title: "Login",
     nav,
@@ -135,7 +135,6 @@ async function buildAccountManagement(req, res, next) {
   let main = await utilities.buildAccountMain(req, res, next)
   let userReviewData = await reviewModel.getReviewsByAccountId(res.locals.accountData.account_id)
   let reviews = await utilities.getSingleUserReviewHTML(userReviewData)
-  console.log("reviews", reviews)
   res.render("account/management", {
     title: "Account Management",
     nav,
@@ -176,18 +175,21 @@ async function updateAccountDetails(req, res) {
   )
 
   if (updateResult) {
+  let userReviewData = await reviewModel.getReviewsByAccountId(res.locals.accountData.account_id)
+  let reviews = await utilities.getSingleUserReviewHTML(userReviewData)
     req.flash(
-      "notice",
+      "success",
       `${account_firstname}, your account has been updated.`
     )
     res.status(201).render("account/management", {
       title: "Account Management",
       nav,
       main,
+      reviews,
       errors: null,
     })
   } else {
-    req.flash("notice", "Sorry, the registration failed.")
+    req.flash("failure", "Sorry, the registration failed.")
     res.status(501).render("account/update", {
       title: "Update Account",
       nav,
@@ -213,7 +215,7 @@ async function changePassword(req, res) {
     // regular password and cost (salt is generated automatically)
     hashedPassword = await bcrypt.hashSync(account_password, 10)
   } catch (error) {
-    req.flash("notice", 'Sorry, there was an error processing the registration.')
+    req.flash("failure", 'Sorry, there was an error processing the registration.')
     res.status(500).render("account/update", {
       title: "Update Account",
       nav,
@@ -226,18 +228,21 @@ async function changePassword(req, res) {
   )
 
   if (changePassResult) {
+  let userReviewData = await reviewModel.getReviewsByAccountId(res.locals.accountData.account_id)
+  let reviews = await utilities.getSingleUserReviewHTML(userReviewData)
     req.flash(
-      "notice",
+      "success",
       `${res.locals.accountData.account_firstname}, your password has been changed.`
     )
     res.status(201).render("account/management", {
       title: "Account Management",
       nav,
       main,
+      reviews,
       errors: null,
     })
   } else {
-    req.flash("notice", "Sorry, the password change failed.")
+    req.flash("failure", "Sorry, the password change failed.")
     res.status(501).render("account/update", {
       title: "Update Account",
       nav,

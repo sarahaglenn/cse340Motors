@@ -94,7 +94,7 @@ invCont.addClassification = async function (req, res) {
 
   if (addClassificationResult) {
     req.flash(
-      "notice",
+      "succuss",
       `${classification_name} has been added to classifications.`
     )
     nav = await utilities.getNav()
@@ -105,7 +105,7 @@ invCont.addClassification = async function (req, res) {
       errors: null,
     })
   } else {
-    req.flash("notice", "Sorry, the classification could not be added.")
+    req.flash("failure", "Sorry, the classification could not be added.")
     res.status(501).render("inventory/add-classification", {
       title: "Add Classification",
       nav,
@@ -142,7 +142,7 @@ invCont.addInventory = async function (req, res) {
 
   if (addInventoryResult) {
     req.flash(
-      "notice",
+      "success",
       `${inv_make} ${inv_model} has been added to inventory.`
     )
 
@@ -153,7 +153,7 @@ invCont.addInventory = async function (req, res) {
       errors: null,
     })
   } else {
-    req.flash("notice", "Sorry, the inventory item could not be added.")
+    req.flash("failure", "Sorry, the inventory item could not be added.")
     res.status(501).render("inventory/add-inventory", {
       title: "Add Inventory",
       nav,
@@ -217,12 +217,12 @@ invCont.updateInventory = async function (req, res) {
 
   if (updateResult) {
     req.flash(
-      "notice",
+      "success",
       `The ${inv_make} ${inv_model} was successfully updated.`
     )
     res.redirect("/inv/")
   } else {
-    req.flash("notice", "Sorry, the inventory item could not be updated.")
+    req.flash("failure", "Sorry, the inventory item could not be updated.")
     res.status(501).render("inventory/edit-inventory", {
       title: `Edit ${inv_make} ${inv_model}`,
       nav,
@@ -273,12 +273,12 @@ invCont.deleteInventory = async function (req, res) {
 
   if (deleteResult) {
     req.flash(
-      "notice",
+      "success",
       `The item was successfully deleted.`
     )
     res.redirect("/inv/")
   } else {
-    req.flash("notice", "Sorry, the inventory item could not be deleted.")
+    req.flash("failure", "Sorry, the inventory item could not be deleted.")
     res.status(501).render("inventory/delete-confirm", {
       title: `Delete ${deleteResult.inv_make} ${deleteResult.inv_model}`,
       nav,

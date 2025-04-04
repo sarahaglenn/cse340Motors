@@ -15,7 +15,7 @@ reviewCont.createReview = async function (req, res, next) {
   if (createReviewResult) {
     res.status(201).redirect(`/inv/detail/${inv_id}`)
   } else {
-    req.flash("notice", "Sorry, the review could not be added.")
+    req.flash("failure", "Sorry, the review could not be added.")
     res.status(501)
   }
 }
@@ -68,7 +68,7 @@ reviewCont.updateReview = async function (req, res) {
   )
   if (updateResult) {
     req.flash(
-      "notice",
+      "success",
       `Your review has been updated.`
     )
     res.status(201).render("account/management", {
@@ -79,7 +79,7 @@ reviewCont.updateReview = async function (req, res) {
       errors: null,
     })
   } else {
-    req.flash("notice", "Sorry, the review could not be updated.")
+    req.flash("failure", "Sorry, the review could not be updated.")
     res.status(501).render("account/management", {
       title: "Account Management",
       nav,
@@ -135,12 +135,12 @@ reviewCont.deleteReview = async function (req, res) {
 
   if (deleteResult) {
     req.flash(
-      "notice",
+      "success",
       `The review was successfully deleted.`
     )
     res.redirect("/account/")
   } else {
-    req.flash("notice", "Sorry, the review could not be deleted.")
+    req.flash("failure", "Sorry, the review could not be deleted.")
     res.status(501).render("review/delete", {
       title: `Delete ${carDetails}`,
       nav,
