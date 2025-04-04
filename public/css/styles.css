@@ -398,6 +398,10 @@ fieldset span {
 #inventoryDisplay tbody tr:nth-child(odd) {
   background-color: #fff1ea;
 }
+/* Account Management Page */
+#userVehicleReviews li {
+  margin: 0 0 10px 0;
+}
 /* Add New Classification page */
 #addClassification {
   width: 200px;
