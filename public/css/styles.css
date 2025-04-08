@@ -438,7 +438,8 @@ fieldset span {
   h1 {
     margin-left: 5vw;
   }
-  .mainContainer {
+  .mainContainer,
+  .reviewsContainer {
     margin: 0 7vw;
   }
   .banner {

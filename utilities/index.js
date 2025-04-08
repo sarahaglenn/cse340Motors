@@ -164,8 +164,9 @@ Util.buildAccountMain = async function (req, res) {
     ||res.locals.accountData.account_type == 'Admin'
   ) {
     main += `<h3>Inventory Management</h3>
-    <p><a href="/inv">Manage Inventory</a></p></div>`
+    <p><a href="/inv">Manage Inventory</a></p>`
   }
+  main += "</div>"
   return main
 }
 
